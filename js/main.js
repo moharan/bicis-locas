@@ -12,11 +12,13 @@ function validateForm() {
     var email = document.getElementById("input-email").value;
     var password = document.getElementById("input-password").value;
 
-    var selecciona = document.getElementsByClassName("form-control").value;
-    console.log(selecciona + " opción del Select");
+    var selectorIndex = document.getElementById("selector").selectedIndex;
+    //console.log(selectorIndex);
+    var selectorOpts = document.getElementById("selector").options;
+    //console.log(selectorOpts);
+    var selectorfinal = selectorOpts[selectorIndex].value;
 
     var tw = document.getElementById("input-social").value;
-    console.log(tw + " contenido input twitter");
 
     if (nombre == null || nombre.length == 0) {
         var contenedor = document.getElementsByClassName("input-box")[0];
@@ -93,18 +95,22 @@ function validateForm() {
     } else if (password < 6 || password == "password" || password == "123456" || password == "098754") {
         var contenedor = document.getElementsByClassName("input-box")[3];
         var res = document.createElement("span");
-        var texto = document.createTextNode("ingresa una Mayuscula al principio");
+        var texto = document.createTextNode("Son 6 caracteres, No usar: 'pasword', '123456','098754'");
         contenedor.appendChild(res);
         res.appendChild(texto);
         console.log(password + " es una de las limitantes del ejercicio");
     } else {
         console.log(password + " Valido");
     }
+    // validaciones no obligatorias 
+    console.log(selectorfinal + " opción del Select");
+    console.log(tw + " contenido input twitter");
 
+    // limpia value para seguir completando el formulario
     document.getElementById("name").value = "";
     document.getElementById("lastname").value = "";
     document.getElementById("input-email").value = "";
     document.getElementById("input-password").value = "";
-
+    document.getElementById("selector").value = "0";
     document.getElementById("input-social").value = "";
 }
